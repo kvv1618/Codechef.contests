@@ -1,0 +1,162 @@
+# cook your dish here
+t=int(input())
+while t>0:
+    t=t-1
+    p,q,r = map(int, input().split())
+    a,b,c = map(int, input().split())
+    if a==p and b==q and c==r:
+        print(0)
+        continue
+    d1=a-p
+    d2=b-q
+    d3=c-r
+    if (d1==0 and d2==0 and d3!=0) or (d1!=0 and d2==0 and d3==0) or (d1==0 and d2!=0 and d3==0):
+        print(1)
+        continue
+    if (d1==0 and d2!=0 and d3!=0 and d2==d3) or (d2==0 and d3!=0 and d1!=0 and d1==d3) or (d3==0 and d1!=0 and d2!=0 and d1==d2):
+        print(1)
+        continue
+    if (d1==0 and d2!=0 and d3!=0):
+        if(q!=0 and r!=0):
+            if(b%q==0 and c%r==0):
+                if(b/q==c/r):
+                    print(1)
+                    continue
+    if (d2==0 and d1!=0 and d3!=0):
+        if(p!=0 and r!=0):
+            if(a%p==0 and c%r==0):
+                if(a/p==c/r):
+                    print(1)
+                    continue
+    if (d3==0 and d2!=0 and d1!=0):
+        if(q!=0 and p!=0):
+            if(b%q==0 and a%p==0):
+                if(b/q==a/p):
+                    print(1)
+                    continue
+    if d3!=0 and d2!=0 and d1!=0 and d1==d2 and d2==d3:
+        print(1)
+        continue
+    if d3!=0 and d2!=0 and d1!=0:
+        if p!=0 and q!=0 and r!=0:
+            if a%p==0 and b%q==0 and c%r==0:
+                if a/p==b/q==c/r:
+                    print(1)
+                    continue
+    if (d1==0 and d2!=d3) or (d2==0 and d3!=d1) or (d3==0 and d1!=d2):
+        print(2)
+        continue
+    if (d1==0 and q!=0 and r!=0):
+        if(b%q==0 and c%r==0):
+            if((b/q)!=(c/r)):
+                print(2)
+                continue
+    if (d2==0 and p!=0 and r!=0):
+        if(a%p==0 and c%r==0):
+            if((a/p)!=(c/r)):
+                print(2)
+                continue
+    if (d3==0 and p!=0 and q!=0):
+        if(b%q==0 and a%p==0):
+            if((b/q)!=(a/p)):
+                print(2)
+                continue
+    if (d1==d2!=d3!=0 or d2==d3!=d1!=0 or d1==d3!=d2!=0):
+        print(2)
+        continue
+    if p!=0 and q!=0 and d1!=0 and d2!=0 and d3!=0:
+        if (a%p)==0 and b%q==0:
+            if a/p==b/q:
+                print(2)
+                continue
+    if p!=0 and r!=0 and d1!=0 and d2!=0 and d3!=0:
+        if (a%p)==0 and c%r==0:
+            if a/p==c/r:
+                print(2)
+                continue
+    if r!=0 and q!=0 and d1!=0 and d2!=0 and d3!=0:
+        if (c%r)==0 and b%q==0:
+            if c/r==b/q:
+                print(2)
+                continue
+    if d1+d2==d3 or d2+d3==d1 or d3+d1==d2:
+        print(2)
+        continue
+    if p!=0 and q!=0 and r!=0:
+        if a%p==0 and b%q==0 and c%r==0:
+            if (a/p)*(b/q)==c/r or (a/p)*(c/r)==b/q or (c/r)*(b/q)==a/p:
+                print(2)
+                continue
+    if(q!=0):
+        if b%q==0 and (r*(b/q)+d1==c or (r+d1)*(b/q)==c):
+            print(2)
+            continue
+    if(q!=0):
+        if b%q==0 and (p*(b/q)+d3==a or (p+d3)*(b/q)==a):
+            print(2)
+            continue
+    if(p!=0):
+        if a%p==0 and (r*(a/p)+d2==c or (r+d2)*(a/p)==c):
+            print(2)
+            continue
+    if(p!=0):
+        if a%p==0 and (q*(a/p)+d3==b or (q+d3)*(a/p)==b):
+            print(2)
+            continue
+    if(r!=0):
+        if c%r==0 and (q*(c/r)+d1==b or (q+d1)*(c/r)==b):
+            print(2)
+            continue
+    if(r!=0):
+        if c%r==0 and (p*(c/r)+d2==a or (p+d2)*(c/r)==a):
+            print(2)
+            continue
+    if(p-q!=0 and a-b!=0):
+        if((a-b)%(p-q)==0):
+            m=(a-b)/(p-q)
+            if(((p*b)-(a*q))%(a-b)==0):
+                d=((p*b)-(a*q))/(a-b)
+                if((p+d)*m==a and (q+d)*m==b and (r+d==c or r*m==c or (r+d)*m==c)):
+                    print(2)
+                    continue
+    if(p-r!=0 and a-c!=0):
+        if((a-c)%(p-r)==0):
+            m=(a-c)/(p-r)
+            if(((p*c)-(a*r))%(a-c)==0):
+                d=((p*c)-(a*r))/(a-c)
+                if((p+d)*m==a and (r+d)*m==c and (q+d==b or q*m==b or (q+d)*m==b)):
+                    print(2)
+                    continue
+    if(q-r!=0 and b-c!=0):
+        if((b-c)%(q-r)==0):
+            m=(b-c)/(q-r)
+            if(((q*c)-(b*r))%(b-c)==0):
+                d=((q*c)-(b*r))/(b-c)
+                if((q+d)*m==b and (r+d)*m==c and (p+d==a or p*m==a or (p+d)*m==a)):
+                    print(2)
+                    continue
+    if(p-q!=0):
+        if((a-b)%(p-q)==0):
+            m=(a-b)/(p-q)
+            if(((p*b)-(a*q))%(p-q)==0):
+                d=((p*b)-(a*q))/(p-q)
+                if(p*m)+d==a and (q*m)+d==b and (r+d==c or r*m==c or (r*m)+d==c):
+                    print(2)
+                    continue
+    if(p-r!=0):
+        if((a-c)%(p-r)==0):
+            m=(a-c)/(p-r)
+            if(((p*c)-(a*r))%(p-r)==0):
+                d=((p*c)-(a*r))/(p-r)
+                if(p*m)+d==a and (r*m)+d==c and (q+d==b or q*m==b or (q*m)+d==b):
+                    print(2)
+                    continue
+    if(q-r!=0):
+        if((b-c)%(q-r)==0):
+            m=(b-c)/(q-r)
+            if(((q*c)-(b*r))%(q-r)==0):
+                d=((q*c)-(b*r))/(q-r)
+                if(r*m)+d==c and (q*m)+d==b and (p+d==a or p*m==a or (p*m)+d==a):
+                    print(2)
+                    continue
+    print(3)
