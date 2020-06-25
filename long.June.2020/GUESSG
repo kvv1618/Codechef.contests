@@ -1,0 +1,73 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int n,k=3;
+	vector<int>a;
+	char o,e;
+	cin>>n;
+	int l=1,r=n,l1=1,r1=n;
+	int m=l+(r-l)/2,m1=l1+(r1-l)/2;
+	cout<<m<<endl;
+	cout<<flush;
+	cin>>o;
+	if(o!='E')
+	{
+	    cout<<m<<endl;
+	    cout<<flush;
+	    cin>>e;
+	}
+	while(!(o=='E'||e=='E'))
+	{
+	    if(k%2!=0)
+	    {
+	        if(o=='L')
+	        {
+	            r=m-1;
+	            m=l+(r-l)/2;
+	            cout<<m<<endl;
+	            cout<<flush;
+	            cin>>o;
+	            k++;
+	            continue;
+	        }
+	        if(o=='G')
+	        {
+	            l=m+1;
+	            m=l+(r-l)/2;
+	            cout<<m<<endl;
+	            cout<<flush;
+	            cin>>o;
+	            k++;
+	            continue;
+	        }
+	    }
+	    if(k%2==0)
+	    {
+	        if(e=='L')
+	        {
+	            r1=m1-1;
+	            m1=l1+(r1-l1)/2;
+	            cout<<m1<<endl;
+	            cout<<flush;
+	            cin>>e;
+	            k++;
+	            continue;
+	        }
+	        if(e=='G')
+	        {
+	            l1=m1+1;
+	            m1=l1+(r1-l1)/2;
+	            cout<<m1<<endl;
+	            cout<<flush;
+	            cin>>e;
+	            k++;
+	            continue;
+	        }
+	    }
+	}
+	return 0;
+}
+

@@ -1,0 +1,84 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,e=0;
+	    cin>>n;
+	    int a[n];
+	    for(int i=0;i<n;i++)
+	    {
+	        cin>>a[i];
+	        if(a[i]==5||a[i]==10)
+	        e++;
+	    }
+	    if(a[0]!=5)
+	    {
+	        cout<<"NO"<<endl;
+	       continue;
+	    }
+	    int q=0;
+	    if(e==n)
+	    {
+    	    int s=0;
+    	    for(int i=0;i<n;i++)
+    	    {
+    	        if(a[i]==5)
+    	        s++;
+    	        if(a[i]==10)
+    	        {
+    	            if(s>=1)
+    	            {
+    	                s--;
+    	                continue;
+    	            }
+    	            else
+    	            {
+    	                cout<<"NO"<<endl;
+    	                q=1;
+    	                break;
+    	            }
+    	        }
+    	    }        
+	    }
+	    if(e!=n)
+	    {
+	        int s=0;
+    	    for(int i=0;i<n;i++)
+    	    {
+    	        if(a[i]==5)
+    	        s++;
+    	        if(a[i]==10)
+    	        {
+    	            if(s>=1)
+    	            continue;
+    	            else
+    	            {
+    	                cout<<"NO"<<endl;
+    	                q=1;
+    	                break;
+    	            }
+    	        }
+    	        if(a[i]==15)
+    	        {
+    	            if(s>=2)
+    	            s--;
+    	            else
+    	            {
+    	                cout<<"NO"<<endl;
+    	                q=1;
+    	                break;
+    	            }
+    	        }
+    	    }
+	    }
+	    if(q==0)
+	    cout<<"YES"<<endl;
+	}
+	return 0;
+}
+

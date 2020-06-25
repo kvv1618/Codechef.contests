@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    long long int ts;
+	    cin>>ts;
+	    long long int sum=0;
+	    if(ts%2!=0)
+	    sum+=ts/2;
+	    if(ts%2==0)
+	    {
+	        while(ts%2==0)
+	        {
+	            ts/=2;
+	        }
+	        sum+=ts/2;
+	    }
+	    cout<<sum<<endl;
+	}
+	return 0;
+}
+
