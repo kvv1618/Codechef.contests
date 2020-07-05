@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,q;
+	    cin>>n>>q;
+	    char s[n];
+	    cin>>s;
+	    int a[26]={0},x=0;
+	    char v[]={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+	    for(int i=0;i<26;i++)
+	    {
+	        for(int j=0;j<n;j++)
+	        {
+	            if(v[i]==s[j])
+	            a[i]++;
+	        }
+	        if(a[i]>1)
+	        x+=(a[i]-1);
+	    }
+	    while(q--)
+	    {
+	            int c,sum=0;
+	            cin>>c;
+	            if(c==0)
+	            {
+	                cout<<n<<endl;
+	                continue;
+	            }
+	            if(c!=1)
+	            {
+    	            for(int i=0;i<26;i++)
+    	            {
+    	                if(a[i]>c)
+    	                {
+    	                    sum+=(a[i]-c);
+    	                }
+    	            }
+    	            cout<<sum<<endl;
+    	            continue;
+	            }
+	            if(c==1)
+	            cout<<x<<endl;
+	    }
+	}
+	return 0;
+}
