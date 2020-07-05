@@ -1,0 +1,85 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+#include<set>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,k,q,l=0,na=0;
+	    cin>>n>>k;
+	    vector<int>v,a,v2;
+	    set<int>s;
+	    for(int i=0;i<n;i++)
+	    {
+	        cin>>q;
+	        v.push_back(q);
+	    }
+	    int f=0,i=0,size1,size2;
+	    while(i<n)
+	    {
+	        if(v[i]!=i+1)
+	        {
+	            int g;
+	            int g1=i+1;
+	            int g2=v[i];
+	            q=v[v[i]-1];
+	            if(q==i+1)
+	            {
+	                size1=s.size();
+	                s.insert(i+1);
+	                s.insert(v[i]);
+	                size2=s.size();
+	                if(size1!=size2)
+	                {
+	                    v2.push_back(i+1);
+	                    v2.push_back(v[i]);
+	                }
+	                i++;
+	                continue;
+	            }
+	            if(q!=i+1)
+	            {
+	                g=q;
+	            }
+	            a.push_back(g1);
+	            a.push_back(g2);
+	            a.push_back(g);
+	            l++;
+	            int t=v[v[i]-1];
+	            v[v[i]-1]=v[i];
+	            v[i]=v[g-1];
+	            v[g-1]=t;
+	            if(l>k)
+	           {
+	               f=1;
+	               break;
+	           }
+	        }
+	        if(v[i]==i+1)
+	        i++;
+	    }
+	    int x=s.size();
+	    if(x%4!=0)
+	    {
+	        cout<<-1<<endl;
+	        continue;
+	    }
+	    int ss=l+(x/2);
+	    cout<<ss<<endl;
+	    for(int i=0;i<(l*3);i+=3)
+	    {
+	        cout<<a[i]<<" "<<a[i+1]<<" "<<a[i+2]<<endl;
+	    }
+	    for(int i=0;i<x;i+=4)
+	    {
+	        cout<<v2[i]<<" "<<v2[i+2]<<" "<<v2[i+1]<<endl;
+	        cout<<v2[i+2]<<" "<<v2[i+1]<<" "<<v2[i+3]<<endl;
+	    }
+	}
+	return 0;
+}
