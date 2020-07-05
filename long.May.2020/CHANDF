@@ -1,0 +1,76 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+#include<cmath>
+using namespace std;
+typedef unsigned long long int ll;
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    ll x,y,l,r;
+	    cin>>x>>y>>l>>r;
+	    ll q=x,w=y;
+	    vector<int>a,b,c;
+	    while(x>0){
+	        a.push_back(x%2);
+	        x/=2;
+	    }
+	    while(y>0){
+	        b.push_back(y%2);
+	        y/=2;
+	    }
+	    ll s1=a.size(),s2=b.size();
+	    ll m=s1;
+	    m=s1>s2?s1:s2;
+	    if(s1>s2)
+	    {
+	        ll p=m-s2;
+	        while(p--)
+	        b.push_back(0);
+	    }
+	    if(s2>s1)
+	    {
+	        ll p=m-s1;
+	        while(p--)
+	        a.push_back(0);
+	    }
+	    ll sum=0,z=0;
+	    while(m--)
+	    {
+	     //   cout<<a[i]<<" "<<b[i]<<endl;
+	        int k=a[m]|b[m];
+	        if(k==1){
+    	        z=pow(2,m);
+    	        sum+=z;
+    	        if((sum>r)||(sum==r&&m!=0))
+    	        {
+    	            sum-=z;
+    	        }
+	        }
+	    }
+	    ll e=sum,a1=0,b1=0;
+	    while(e>0)
+	    {
+	        c.push_back(e%2);
+	        e/=2;
+	    }
+	    ll s3=c.size();
+	    for(ll i=0;i<s3;i++)
+	    {
+	        if(a[i]&c[i]==1)
+	        a1+=pow(2,i);
+	        if(b[i]&c[i]==1)
+	        b1+=pow(2,i);
+	    }
+	    if(a1==0||b1==0)
+	    {
+	        cout<<0<<endl;
+	        continue;
+	    }
+	    cout<<sum<<endl;
+	}
+	return 0;
+}
