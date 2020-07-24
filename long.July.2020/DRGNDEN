@@ -1,0 +1,93 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+int main() {
+	// your code goes here
+	ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+	ll n,q;
+	cin>>n>>q;
+	vector<ll>h,v;
+	for(ll i=0;i<n;i++)
+	{
+	    ll x;
+	    cin>>x;
+	    h.push_back(x);
+	}
+	for(ll i=0;i<n;i++)
+	{
+	    ll x;
+	    cin>>x;
+	    v.push_back(x);
+	}
+	while(q--)
+	{
+	    ll a,b,c;
+	    cin>>a>>b>>c;
+	    if(a==1)
+	    {
+	        v[b-1]=c;
+	    }
+	    if(a==2)
+	    {
+	        vector< pair<ll,ll> >t;
+	        ll ans=0;
+	        if(b==c)
+	        {
+	            cout<<v[b-1]<<endl;
+	            continue;
+	        }
+	        if(b>c)
+	        {
+	            for(ll i=b-1;i>=c-1;i--)
+	            {
+	                t.push_back( make_pair( h[i],v[i] ) );
+	            }
+	        }
+	        if(b<c)
+	        {
+	            for(ll i=b-1;i<=c-1;i++)
+	            {
+	                t.push_back( make_pair( h[i],v[i] ) );
+	            }
+	        }
+	        ll i=0;
+	        if(t.size()==2&&t[0].first<=t[1].first)
+            {
+                cout<<v[b-1]<<endl;
+                continue;
+            }
+	        while(i!=t.size()-1)
+	        {
+	            /*for(ll k=0;k<t.size();k++)
+    	        {
+    	            cout<<t[k].first<<" ";
+    	        }
+    	        cout<<endl;*/
+	            if(t[i].first<=t[i+1].first)
+	            {
+	                t.erase(t.begin()+i);
+	                i=0;
+	                continue;
+	            }
+	            i++;
+	        }
+	        /*for(ll i=0;i<t.size();i++)
+	        {
+	            cout<<t[i].first<<" ";
+	        }
+	        cout<<endl;*/
+	        if(t[0].first!=h[b-1]||t[t.size()-1].first!=h[c-1]||t[0].second!=v[b-1]||t[t.size()-1].second!=v[c-1])
+	        {
+	            cout<<-1<<endl;
+	            continue;
+	        }
+	        for(ll j=0;j<t.size();j++)
+	        {
+	            ans+=t[j].second;
+	        }
+	        cout<<ans<<endl;
+	    }
+	}
+	return 0;
+}
