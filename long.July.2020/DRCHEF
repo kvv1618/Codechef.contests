@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+int main() {
+	// your code goes here
+	ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+	ll t;
+	cin>>t;
+	while(t--)
+	{
+	    ll n,x,ans=0;
+	    cin>>n>>x;
+	    vector<ll>a;
+	    for(ll i=0;i<n;i++)
+	    {
+	        ll q;
+	        cin>>q;
+	        a.push_back(q);
+	    }
+	    sort(a.begin(),a.end());
+	    for(ll i=0;i<n;i++)
+	    {
+	        if(a[i]<=x&&2*a[i]<=x)
+	        {
+	            ans++;
+	            continue;
+	        }
+	        if(a[i]<=x&&2*a[i]>=x)
+	        {
+	            x=2*a[i];
+	            ans++;
+	            continue;
+	        }
+	        if(x<a[i])
+	        {
+	            while(x<a[i])
+	            {
+	                ans++;
+	                a[n-1]=min(a[n-1],2*(a[n-1]-x));
+	                x+=x;
+	            }
+	            if(a[i]<=x&&2*a[i]<=x)
+    	        {
+    	            ans++;
+    	            continue;
+    	        }
+    	        if(a[i]<=x&&2*a[i]>=x)
+    	        {
+    	            x=2*a[i];
+    	            ans++;
+    	            continue;
+    	        }
+    	        if(i!=n-1)
+    	        {
+    	            a[n-1]=min(a[n-1],2*(a[n-1]-x));
+    	        }
+	        }
+	    }
+	    cout<<ans<<endl;
+	}
+	return 0;
+}
