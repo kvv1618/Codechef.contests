@@ -1,0 +1,115 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	long long int t;
+	cin>>t;
+	while(t--)
+	{
+	    long long int n;
+	    cin>>n;
+	    vector<long long int>a,b,c,a2,b2,a3,b3;
+	    unordered_map<long long int, long long int> mp,ma,mb;
+	    vector<long long int>:: iterator it1,it2;
+	    for(long long int i=0;i<n;i++)
+	    {
+	        long long int x;
+	        cin>>x;
+	        a.push_back(x);
+	        c.push_back(x);
+	    }
+	    for(long long int i=0;i<n;i++)
+	    {
+	        long long int x;
+	        cin>>x;
+	        b.push_back(x);
+	        c.push_back(x);
+	    }
+	    long long int f=0;
+        for (long long int i = 0; i < 2*n; i++) 
+            mp[c[i]]++;
+        for (long long int i = 0; i < n; i++) 
+            ma[a[i]]++;
+        for (long long int i = 0; i < n; i++) 
+            mb[b[i]]++;
+        for (auto x : mp) 
+            {
+                if((x.second)%2!=0)
+                {
+                    cout<<-1<<endl;
+                    f=1;
+                    break;
+                }
+            }
+        if(f==1)
+        continue;
+        sort(a.begin(),a.end());
+        sort(b.begin(),b.end());
+        long long int m1=min(a[0],b[0]),ans=0;
+        for(long long int i=0;i<n;i++)
+        {
+    	        if(ma[a[i]]>mb[a[i]]){
+    	            ma[a[i]]-=mb[a[i]];
+    	            mb[a[i]]=0;
+    	        }
+    	        else{
+    	            mb[a[i]]-=ma[a[i]];
+    	            ma[a[i]]=0;
+    	        }
+    	        if(ma[b[i]]>mb[b[i]]){
+    	            ma[b[i]]-=mb[b[i]];
+    	            mb[b[i]]=0;
+    	        }
+    	        else{
+    	            mb[b[i]]-=ma[b[i]];
+    	            ma[b[i]]=0;
+    	        }
+    	}
+    	for(long long int i=0;i<n;i++){
+    	        while(ma[a[i]]>0) {
+    	            a3.push_back(a[i]);
+    	            ma[a[i]]--;
+    	        }
+    	        while(mb[b[i]]>0){
+    	            b3.push_back(b[i]);
+    	            mb[b[i]]--;
+    	        }
+    	    }
+    	for(long long int i=0;i<a3.size();i+=2)
+    	{
+    	    a2.push_back(a3[i]);
+    	    b2.push_back(b3[i]);
+    	}
+        if(a2.size()==0&&b2.size()==0)
+        {
+            cout<<0<<endl;
+            continue;
+        }
+        while(a2.size()>0)
+        {
+            if(a2[0]!=b2[0])
+            {
+                if(2*m1>min(a2[0],b2[0]))
+                {
+                    if(a2[0]>b2[0])
+                    {
+                        ans+=b2[0];
+                        b2.erase(b2.begin());
+                        a2.erase(a2.end()-1);
+                        continue;
+                    }
+                    ans+=a2[0];
+                    a2.erase(a2.begin());
+                    b2.erase(b2.end()-1);
+                    continue;
+                }
+                ans+=2*m1;
+                a2.erase(a2.begin());
+                b2.erase(b2.begin());
+            }
+        }
+        cout<<ans<<endl;
+	}
+	return 0;
+}
