@@ -1,0 +1,41 @@
+#include <bits/stdc++.h> 
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+	    int n;
+	    scanf("%d",&n);
+	    int x[(4*n)-1],y[(4*n)-1];
+	    set<int>sx,sy;
+	    set<int>::iterator it,it2;
+	    scanf("%d%d",&x[0],&y[0]);
+	    sx.insert(x[0]);
+	    sy.insert(y[0]);
+	    for(int i=1;i<(4*n)-1;i++)
+	    {
+	        int s1=sx.size(),s2=sy.size();
+	        scanf("%d%d",&x[i],&y[i]);
+	        sx.insert(x[i]);
+	        if(sx.size()==s1)
+	        {
+	            it=sx.find(x[i]);
+	            sx.erase(it);
+	        }
+	        sy.insert(y[i]);
+	        if(sy.size()==s2)
+	        {
+	            it=sy.find(y[i]);
+	            sy.erase(it);
+	        }
+	    }
+	    it=sx.begin();
+	    it2=sy.begin();
+	    int ax=*it,ay=*it2;
+	    printf("%d %d\n",ax,ay);
+	}
+	return 0;
+}
